@@ -54,9 +54,11 @@ namespace Finances.Employees //Zadanie 6
             PartTime,
             Contract,
         }
+        
+        public Contract ContractType { get; set; }
 
         public void ChangePersonData(int id, string name, string surname, int age, decimal holidaybonus, decimal basic,
-            decimal bonus, decimal other, string contract, string fulltime, string parttime) //Zadanie 5
+            decimal bonus, decimal other, Contract contractType) //Zadanie 5
         {
             person.Id = id;
             person.Name = name;
@@ -67,12 +69,7 @@ namespace Finances.Employees //Zadanie 6
             salary.Basic = basic;
             salary.Bonus = bonus;
             salary.Other = other;
-            string c = Contract.Contract.ToString();
-            string f = Contract.FullTime.ToString();
-            string p = Contract.PartTime.ToString();
-            c = contract;
-            f = fulltime;
-            p = parttime ;
+            ContractType = contractType;
             
             Operation operation = new Operation("Change Personal data", LinkedOperation.Correction, "Changed contract");
         }
