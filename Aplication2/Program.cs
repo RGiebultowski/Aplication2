@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -30,7 +30,12 @@ namespace Finances.Employees //Zadanie 6
     class Employee : Operation //Zadanie1, Zadanie2 powiązanie klasy Empoyee z Operation
     {
         static decimal HolidayBonus = 1000; //Zadanie 2
-        
+
+        public Employee() : base("Title", LinkedOperation.Main, "Details: ")
+        {
+            
+        }
+
         public struct Salary //Zadanie3 
         {
             public decimal Basic;
@@ -40,9 +45,11 @@ namespace Finances.Employees //Zadanie 6
         Salary salary = new Salary(); //Zadanie 3 
         Person person = new Person(); //Zadanie 5
 
+        public decimal Wage { get; set; }
+        
         public Operation PayEmployee() //Zadanie 3 
         {
-            decimal wage = salary.Basic + salary.Bonus + salary.Other;
+            Wage = salary.Basic + salary.Bonus + salary.Other;
             Operation operation = new Operation("Salary", LinkedOperation.Main, "bigger bonus");
             listOfOperations.Add(operation.ToString());
             return operation;
@@ -58,8 +65,23 @@ namespace Finances.Employees //Zadanie 6
         public Contract ContractType { get; set; }
 
         public void ChangePersonData(int id, string name, string surname, int age, decimal holidaybonus, decimal basic,
-            decimal bonus, decimal other, Contract contractType) //Zadanie 5
+            decimal bonus, decimal other, Contract contractType, decimal wage ) //Zadanie 5
         {
+            //Temat 2 / Zadanie1
+            Console.WriteLine("Give Username: ");
+            var login = Console.ReadLine();
+            Console.WriteLine("Give password: ");
+            var password = Console.ReadLine();
+            if (login == "Admin" && password == "Admin1")
+            {
+                Wage = wage;
+                return;
+            }
+            else
+            {
+                Console.WriteLine("Wrong inputs!");
+            }
+            
             person.Id = id;
             person.Name = name;
             person.Surname = surname;
@@ -70,7 +92,7 @@ namespace Finances.Employees //Zadanie 6
             salary.Bonus = bonus;
             salary.Other = other;
             ContractType = contractType;
-            
+
             Operation operation = new Operation("Change Personal data", LinkedOperation.Correction, "Changed contract");
         }
 
@@ -112,6 +134,10 @@ namespace Finances.Employees //Zadanie 6
     {
         public static void Main(string[] args)
         {
+            Person person = new Person();
+            Employee employee = new Employee();
+            Operation operation = new Operation("Correction" , Operation.LinkedOperation.Correction, "Data correction of person");
+            
         }
     }
 }
