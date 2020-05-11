@@ -109,6 +109,39 @@ namespace Finances.Employees //Zadanie 6
         }
     }
 
+    class Employess<Operation>
+    //Temat 3 Zadanie 1
+    {
+        private string[] _employessArray;
+        private Operation[] _genericArray;
+
+        public void SizeOfGenericArray(int size)
+        {
+            _employessArray = new string[size + 1];
+            _genericArray = new Operation[size + 1];
+        }
+
+        public string GetItem(int index) // Temat 4 Zadanie 1
+        {
+            return _employessArray[index];
+        }
+
+        public Operation GetGenericArray(int index) // Temat 4 Zadanie 1
+        {
+            return _genericArray[index];
+        }
+
+        public void SetValue(int index, string value)
+        {
+            _employessArray[index] = value;
+        }
+
+        public void SetGenericValue(int index, Operation value)
+        {
+            _genericArray[index] = value;
+        }
+    }
+
     class Operation //Zadanie1
     {
         public enum LinkedOperation // Zadanie 5
@@ -137,6 +170,12 @@ namespace Finances.Employees //Zadanie 6
             Person person = new Person();
             Employee employee = new Employee();
             Operation operation = new Operation("Correction" , Operation.LinkedOperation.Correction, "Data correction of person");
+            
+            Employess<string> employessArray = new Employess<string>(); //Temat 3 Zadanie 1
+            for (int i = 0; i < employessArray.SizeOfGenericArray(size:) ; i++)
+            {
+                employessArray.SetGenericValue(i,person.Name);
+            }
             
         }
     }
